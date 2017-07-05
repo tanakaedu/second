@@ -13,7 +13,7 @@ function update() {
     game.physics.arcade.overlap(dude, stars, pickStar, null, this);
 
     //  only move when you click
-    if (game.input.mousePointer.isDown || game.input.pointer1.isDown)
+    if (/*game.input.mousePointer.isDown || */ game.input.pointer1.isDown)
     {
         //  400 is the speed it will move towards the mouse
         game.physics.arcade.moveToPointer(dude, 400);
