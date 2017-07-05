@@ -12,9 +12,24 @@ function update() {
     // dudeと星が重なったら、その星を消す処理(pickStar)を呼び出す
     game.physics.arcade.overlap(dude, stars, pickStar, null, this);
 
-    dude.x = game.input.x;
-    dude.y = game.input.y;
+    //  only move when you click
+    if (game.input.mousePointer.isDown || game.input.pointer1.isDown)
+    {
+        //  400 is the speed it will move towards the mouse
+        game.physics.arcade.moveToPointer(sprite, 400);
 
+        //  if it's overlapping the mouse, don't move any more
+        if (Phaser.Rectangle.contains(sprite.body, game.input.x, game.input.y))
+        {
+            sprite.body.velocity.setTo(0, 0);
+        }
+    }
+    else
+    {
+        sprite.body.velocity.setTo(0, 0);
+    }
+
+    
     if (dude.body.velocity.x > 0) {
         dude.animations.play("right");
     }
